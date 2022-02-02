@@ -1,0 +1,47 @@
+.contact-right a {
+    display: block;
+    color: #4f5359;
+}
+
+.contact-right {
+    padding-bottom: 62px;
+}
+.contact-right span{
+    font-family: 'open_sanslight';
+}
+
+.ot-form input,
+.ot-form textarea {
+    background-color: #fff;
+}
+.f-regular{
+    font-family: 'open_sansregular';
+}
+
+.d-line {
+    margin-top: 10px;
+}
+
+.contact-right span {
+    display: block;
+}
+.contact-left .content-text {
+    font-family: 'open_sanslight';
+    padding-bottom: 25px;
+}
+
+@media (max-width: 1199px) {
+    .contact-right {
+        padding-bottom: 62px;
+    }
+}
+
+@media (max-width: 991px) {
+    .contact-right {
+        padding-bottom: 30px;
+    }
+    .d-line {
+        margin-top: 10px;
+        padding-bottom: 30px;
+    }
+}

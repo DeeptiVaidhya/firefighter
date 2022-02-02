@@ -1,0 +1,19 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="introduction">
+    <div class="container">
+        <div class="row" *ngIf="introModules[module]">
+            <div class="module1">
+                <div class="col-md-5 col-sm-12">
+                    <img src="assets/images/{{module=='module-1' || module=='module-2' ? module : 'module-3' }}/intro.png">
+                </div>
+                <div class="col-md-7 col-sm-12 intro-right">
+                    <p class="module"><a routerLink="/patient/{{module}}/intro">{{introModules[module]['title']}}</a>
+                    </p>
+                    <h1 [innerHtml]="introModules[module]['text1']"></h1>
+                    <h3 [innerHtml]="introModules[module]['text2']"></h3>
+                    <button class="btn btn-green btn-block" type="button" (click)="startModule(module)">START</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

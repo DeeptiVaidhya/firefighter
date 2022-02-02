@@ -1,0 +1,20 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="primary-body">
+    <div class="container">
+        <div class="row">
+            <div class="module1 mob-pb-100">
+                <div class="col-md-6 col-sm-12">
+                    <img src="assets/images/module-1/cancer.jpg" alt="Cancer" width="100%" />
+                </div>
+                <div class="col-md-6 col-sm-12 pt-60">
+                    <p class="module"><a routerLink="/patient/{{module}}/intro">{{introModules[module]['title']}}</a></p>
+                    <h1 class="cancer-serive" [innerHtml]="introModules[module]['text1']">Cancer in the Fire Service
+                    </h1>
+                    <h3 class="assessment" [innerHtml]="introModules[module]['text2']">Assessment and Evaluation
+                    </h3>
+                    <button class="btn btn-green btn-block w-220" (click)="startAssEva(module)">START</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

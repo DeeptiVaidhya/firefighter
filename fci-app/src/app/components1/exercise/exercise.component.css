@@ -1,0 +1,79 @@
+
+.light_gray_text{
+    color:#B4B5B7;
+    font-size: 18px;
+}
+.primary_prompt{
+    font-size: 18px;
+}
+
+.ot-form textarea {
+    background-color: #FFFFFF;
+}
+
+.secondary_prompt{
+    ont-weight: normal; 
+    font-size: 18px;
+    color: #ccc;
+    letter-spacing: 0.3px;
+}
+
+.btn {
+    width: 150px;
+}
+.btn-disabled {
+    width: 150px;
+}
+
+.notification {
+    display: flex;
+    justify-content: space-between;
+    background-color: #D2E1E8;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
+  
+}
+
+.notification .content {
+    color: #585A62;
+}
+.notification .download {
+    display: flex;
+    justify-content: space-between;
+    padding: 1px;
+    color:#006A84
+}
+.download .download-label {
+    margin-right: 18px;
+}
+.download .download-icon {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.hidden-block {
+    display: none
+}
+
+.radio-inline label> input {
+    height: 20px !important;
+}
+
+.option {
+    padding-left: 36px;
+}
+.col-md-2, .col-md-3{
+    padding-right: 0px ;
+    padding-left: 0px ;
+}
+.col-md-9, .col-md-10{
+    padding-right: 0px ;
+    padding-left: 0px ;
+}
+
+@media (min-width: 990px) {
+    .col-r-p{
+        padding-right: 25px !important;
+    }
+}

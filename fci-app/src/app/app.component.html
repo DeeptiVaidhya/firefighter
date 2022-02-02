@@ -1,0 +1,8 @@
+<app-header [isLoggedIn]="isLoggedIn" [maIsOpen]="maIsOpen" [link]="link" [hidden]="isHeaderHidden" [isModulePage]="isModulePage"></app-header>
+<ng4-loading-spinner> </ng4-loading-spinner>
+<div id="main-content" role="main" class="{{isModulePage || isLandingPage ? 'module-pages' : ''}}">
+    <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!!isModulePage" style="height: 68px;clear:both"></div>
+<app-footer [hidden]="isHeaderHidden" [isModulePage]="isModulePage"></app-footer>

@@ -1,0 +1,114 @@
+<!-- start footer -->
+<div *ngIf="!!isModulePage" class="navbar navbar-default navbar-fixed-bottom module-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="footer-logo" src="assets/images/sylvster.png" alt="Sylvster" />
+                <ul class="list-unstyled nav-footer-mod-list">
+                    <li class="{{module=='module-1'?'tab-active':''}}" routerLink="/patient/module-1/intro">1</li>
+                    <li class="{{module=='module-2'?'tab-active':''}}" routerLink="/patient/module-2/intro">2</li>
+                    <li class="{{module=='module-3'?'tab-active':''}}" routerLink="/patient/module-3/intro">3</li>
+                    <li class="{{module=='module-4'?'tab-active':''}}" routerLink="/patient/module-4/intro">4</li>
+                    <li class="{{module=='module-5'?'tab-active':''}}" routerLink="/patient/module-5/intro">5</li>
+                  
+                </ul>
+
+                <div id="footerAudio" *ngIf="audioSrc!=''">
+                     <ng-container >
+                        <vg-player class="audio-bg" (onPlayerReady)="onPlayerReady($event)">
+                            <vg-controls>
+                                <vg-play-pause (click)="onPause($event)"></vg-play-pause>
+                                <vg-scrub-bar>
+                                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                </vg-scrub-bar>
+
+                                <vg-time-display vgProperty="current" vgFormat="mm:ss /"></vg-time-display>
+                                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                                <vg-mute></vg-mute>
+                                <vg-volume ></vg-volume> 
+                            </vg-controls>
+
+
+                            <audio #media [vgMedia]="media" id="myAudio">
+                                <source [src]="audioSrc" type="audio/mp3" />
+                            </audio>
+                        </vg-player>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer" *ngIf="!!!isModulePage">
+    <div class="container footer-link">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 footer-li">
+                <ul>
+                    <li>
+                        <a routerLink="/about-us"> About Us </a>
+                    </li>
+                    <li>
+                        <a routerLink="/contact-us"> Contact Us </a>
+                    </li>
+                    <!-- <li>
+                        <a routerLink="/faq"> FAQ </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"> Terms & conditions </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"> Privacy Policy </a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6 footer-li">
+                <div class="people-involved">
+                    <b>People Involved in the project:</b>
+                </div>
+
+                <p>Natasha Schaefer Solle, PhD, RN</p>
+                <p>Frank Penedo, PhD</p>
+                <p>Cynthia Beaver, MPH</p>
+                <p>Vandana D. Sookdeo, MD</p>
+                <p>Erin Kobetz, PhD, MPH</p>
+
+
+            </div>
+            <div class="col-md-3 col-sm-6 footer-li">
+                <p class="p-b-20">
+                    <b class="p-b-30">Address:</b> </p>
+                <p class="p-b-20">
+                    1120 NW 14th Street<br />Miami, FL 33136
+                </p>
+                <p class="p-b-20">
+                    <b class="p-b-30">Phone:</b> </p>
+                <p class="p-b-20"> 305-243-9538</p>
+                <!-- <p><b>Email:</b> <br/><a href="mailto:FCI@northwestern.edu​" class="c-blue word-break">FCI<br/>@northwestern.edu​</a></p> -->
+            </div>
+            <div class="col-md-3 col-sm-6 footer-li">
+                <p>In collaboration with:</p>
+                <div class="col-xs-12 fotter-right-logo">
+                    <p>
+                        <img src="assets/images/ffshc-logo-400.png" alt="ffshc-logo" width="100px;" />
+
+                        <img src="assets/images/fci_network.png" alt="fci_network" width="100px;" />
+                    </p>
+                    <p>
+                        <img src="assets/images/floridamarshall.jpg" alt="floridamarshall" width="90px;" />&nbsp;&nbsp;
+                        <img src="assets/images/sylvster.png" alt="sylvster logo" width="100px;" />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 copy-right-bg">
+                    <p class="copy-right">© 2018 FCI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->

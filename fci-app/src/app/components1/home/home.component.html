@@ -1,0 +1,147 @@
+<!-- start container-fluid -->
+<div class="welcome-bg hero">
+    <!-- start container-->
+    <div class="container">
+        <!-- start row -->
+        <div class="row">
+            <div class="col-md-12 col-sm-12 welcome-text">
+                <h1>Welcome to the Firefighter Cancer Initiative Education and Survivorship Program</h1>
+            </div>
+            <div class="col-md-12 col-sm-12 signin-bg" id="sign_in">
+                <div class="h3 text-center">Sign into your account</div>
+                <form class="signin-form" [formGroup]="loginForm" (ngSubmit)="signIn()" autocomplete="off">
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label for="username">Email address</label>
+                        <input formControlName="username" id="username" type="text" class="form-control input-lg" />
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">
+                            This field is required.</p>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label for="password">Password</label>
+                        <input id="password" formControlName="password" type="password" class="form-control input-lg" />
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+                            This field is required.</p>
+                        <a routerLink="/forgot-password" class="forgot-password">Forgot password?</a>
+
+                        <div class="m-t-4">
+                            <input type="checkbox" class="rem-check" formControlName="remember_me" />
+                            Remember me<br />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-3 btn-signin-block">
+                        <button class="btn btn-green btn-block" [disabled]="">Sign In</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 what-is-oncotool">
+                <div class="h3">Our Programs</div>
+                <a href="javascript:void(0)" (click)="scroll(what_is_oncotool)">
+                    <img src="assets/images/blue_arrow_bottom.png" alt="Blue Arrow" />
+                </a>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end container-fluid -->
+
+<div class="container" #what_is_oncotool>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1 class="heading">Our Programs:</h1>
+        </div>
+    </div>
+    <div class="row what-fci">
+        <div class="col-md-4 col-sm-4">
+            <div class="img-responsive">
+                <img class="img-responsive img-center" src="assets/images/morbi_a_neque.jpg" alt="Image" width="100%" />
+            </div>
+            <div class="detail-text">
+                <div class="h3">Firefighter Cancer Initiative:</div>
+                <p>The Firefighter Cancer Initiative (FCI) was launched in 2015 through a state of Florida
+                    appropriation. The primary goals of FCI are to better document and understand the excess burden of
+                    cancer among Florida firefighters, and identify
+                    novel, evidence-based methods for reducing risk. The initiative is led by a multidisciplinary team
+                    of scientists, healthcare practitioners and occupational health and safety experts and uses
+                    community engaged approaches to ensure that
+                    firefighters’ voice and occupational experience is reflected throughout all aspects of program
+                    planning and implementation.</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="img-responsive">
+                <img class="img-responsive img-center" src="assets/images/morbi_semper_erat.jpg" alt="Image"
+                    width="100%" />
+            </div>
+            <div class="detail-text">
+                <div class="h3">FCI Firefighter Cancer Prevention Curriculum (FCPC):</div>
+                <p>The FCI Cancer Prevention Curriculum, created in partnership with fire service leaders, aims to
+                    educate firefighters on cancer risk associated with the fire service and how to reduce these risks
+                    at the individual and organizational levels.
+                    Additional learning resources with state and national level fire organizations are shared for
+                    reference. he curriculum is comprised of 5 modules, 1) Cancer in the fire service; 2) Firefighter
+                    Occupational Cancer Risk; 3) Reducing Cancer
+                    Risk in the Fire Service; 4) Organizational Change and 5) Ongoing Learning Resources. Each module
+                    consists of the most up to date recommendations for firefighters with videos, interactive activities
+                    and short quizzes for evaluation.</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="img-responsive">
+                <img class="img-responsive img-center" src="assets/images/suspendisse_gravida.jpg" alt="Image"
+                    width="100%" />
+            </div>
+            <div class="detail-text">
+                <div class="h3">FCI Cancer Survivorship Program: </div>
+                <p>The FCI Cancer Survivorship program aims to build a better understanding of what cancer survivorship
+                    is, the expected physical and emotional changes and how to prepare for the many changes that occur
+                    during diagnosis, treatment and returning
+                    to the fire service. This online portal has been tailor made for firefighters and based on
+                    experiences of firefighter cancer survivors. </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 blue-arrow-bottom">
+            <div class="h3">
+                How can I get involved?
+            </div>
+            <a href="javascript:void(0)" (click)="scroll(get_in_touch)">
+                <img src="assets/images/blue_arrow_bottom-green.jpg" alt="Image" />
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="learn-more-about" #get_in_touch>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 text-center">
+                <img class="img-responsive img-center" src="assets/images/big_arrow_bottom.png" alt="Image" />
+            </div>
+            <div class="col-md-12 col-sm-12 m-b-20 m-b-10">
+                <h1 class="heading">Learn More About FCI</h1>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-sm-6">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12" [streetViewControl]="true"
+                    [styles]="styleArray">
+                    <agm-marker iconUrl="assets/images/map_marker.png" [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+            </div>
+            <div class="col-md-6 col-sm-6 get-in-touch">
+                <div class="h4">Get in touch with us</div>
+                <p>
+                    1120 NW 14th Street<br />Miami, FL 33136
+                </p>
+                <p>Telephone: 305-243-9538
+                    <br /> Email:
+                    <a class="link" href="mailto:firefighterstudy@miami.edu">firefighterstudy@miami.edu</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

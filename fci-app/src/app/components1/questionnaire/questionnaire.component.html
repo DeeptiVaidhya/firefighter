@@ -1,0 +1,112 @@
+<div class="inner-content p-b-50">
+    <app-inner-page-header page_title="Questionnaire"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="c-pink p-b-20">{{ short_description }}</h4>
+                <h4 class="c-pink p-b-20" *ngIf="!short_description">
+                    {{ group_title }}
+                </h4>
+            </div>
+            <div class="col-xs-12 symptoms">
+                <div class="questionnaire-tbl">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="35%">&nbsp;</th>
+                                <th *ngFor="let option of options">
+                                    {{ option.option_label }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let question of questions"
+                                class="quest-row"
+                            >
+                                <td class="c-purple" id="{{ question.id }}">
+                                    {{ question.question }}
+                                </td>
+                                <td *ngFor="let option of options">
+                                    <span class="radio-container">
+                                        <input
+                                            type="radio"
+                                            title="{{ option.option_label }}"
+                                            name="option[{{ question.id }}]"
+                                            value="{{ option.id }}"
+                                            attr.data-question-id="{{
+                                                question.id
+                                            }}"
+                                            attr.group-id="{{
+                                                option.question_groups_id
+                                            }}"
+                                            [checked]="
+                                                question?.answer_option_id ==
+                                                option?.id
+                                                    ? 'checked'
+                                                    : ''
+                                            "
+                                        />
+                                        <span></span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row sumbit-section">
+            <div class="col-xs-12 text-center">
+                <button
+                    class="btn btn-violet btn-250 b-r-100"
+                    type="button"
+                    (click)="save(congirmModal)"
+                >
+                    Submit
+                </button>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #congirmModal>
+    <div class="modal-header">
+        <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="highlightQuestions()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center p-t-40 p-b-40">
+        <p><b>You skipped some question(s).</b></p>
+    </div>
+    <div class="modal-footer row p-b-40">
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-6 text-center">
+            <button
+                class="btn btn-violet"
+                type="button"
+                (click)="highlightQuestions()"
+            >
+                Go back to questions
+            </button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button
+                class="btn btn-confirm"
+                type="button"
+                (click)="confirmSubmission()"
+            >
+                Ignore and submit
+            </button>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
+    </div>
+</ng-template>
+<app-breadcrumb [breadcrumb]="breadcrumb" isFooter="!1"></app-breadcrumb>

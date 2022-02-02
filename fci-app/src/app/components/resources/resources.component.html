@@ -1,0 +1,58 @@
+<div class="inner-content p-b-50">
+    <app-inner-page-header page_title="External Resources"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <div class="row" *ngFor="let content of resources">
+            <div class="col-xs-12">
+                <accordion class="main-accordion panel-group" [closeOthers]="true">
+                    <accordion-group #res1>
+                        <div accordion-heading class="row clearfix">
+                            <span class="col-xs-10 h6">{{content?.content_name}}</span>
+                            <span class="col-xs-2 text-right h6">
+                                <i [ngClass]="res1?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                            </span>
+                        </div>
+
+                        <div *ngFor="let resource of content?.resources">
+                            <div class="accordion-inner" [ngSwitch]="resource?.type">
+                                <div class="row section">
+                                    <div class="col-xs-12">
+                                        <div class="section-content">
+                                            <span *ngSwitchCase="'READING'" class="sm-article c-primary sec-icon"></span>
+                                            <span *ngSwitchCase="'AUDIO'" class="sm-audio c-primary sec-icon"></span>
+                                            <span *ngSwitchCase="'VIDEO'" class="sm-video c-primary sec-icon"></span>
+                                            <span *ngSwitchCase="'WEBSITE'" class="sm-resource c-primary sec-icon"></span>
+
+                                            <div class="sec-desc">
+                                                <p class="h7">{{ resource?.title}}</p>
+
+                                                <p class="h9" *ngIf="(resource?.is_completed) && resource?.type == 'VIDEO'">
+                                                    <i class="glyphicon glyphicon-ok"></i><b><em>video watched</em></b>
+                                                </p>
+                                                <p class="h9" *ngIf="(resource?.is_completed || resourceId == resource.id) && resource?.type == 'AUDIO'">
+                                                    <i class="glyphicon glyphicon-ok"></i><b><em>Audio played</em></b>
+                                                </p>
+
+                                                <p class="h9">{{ resource?.description}}</p>
+                                            </div>
+
+                                            <!-- Audio button/video button-->
+                                            <a *ngSwitchCase="(resource?.type=='VIDEO' || resource?.type=='AUDIO')?resource?.type:''" title="{{resource?.title}}" href="javascript:void(0)" (click)="openModal(resource, resource?.chapter_content_id)" class="btn btn-green btn-block sec-button">Play Now</a>
+
+                                            <!-- Reading button/Website button-->
+                                            <a *ngSwitchCase="(resource?.type=='READING' || resource?.type=='WEBSITE')?resource?.type:''" title="{{resource?.title}}" href="javascript:void(0)" (click)="goToSite(resource, resource?.chapter_content_id)" class="btn btn-green btn-block sec-button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-inquiry-mood-modal [calleePage]="callee_page" [contentId]="contentId" [resourceDetail]="resourceDetail" *ngIf="!!modalIsShown" [modalIsShown]="modalIsShown" (onCloseModal)="modalClosed()" (onVideoUpdated)="videoTimeUpdated($event)">
+</app-inquiry-mood-modal>

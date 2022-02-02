@@ -1,0 +1,237 @@
+<div class="inner-content p-b-50">
+    <div class="inner-header">
+        <div class="container-fluid primary-bg header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>
+                            {{ pageContent?.title }}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-breadcrumb [breadcrumb]="breadcrumb" (onClickTitle)="goToElem($event)"></app-breadcrumb>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h4 class="c-primary p-b-20" *ngIf="pageContent?.sub_header">{{ pageContent?.sub_header }}</h4>
+
+                <p class="content-p cont-tbl light_gray_text" *ngIf="pageContent?.description" [innerHtml]="pageContent?.description | safeHtml"></p>
+
+                <form [formGroup]="exerciseForm" autocomplete="off" class="ot-form" (ngSubmit)="updateExercise('submit','SUBMIT')">
+                    <div *ngFor="let item of exercise_items; let i=index">
+                        <div [ngSwitch]="item?item['type']:''">
+
+                            <div *ngSwitchCase="'TEXT_ITEM'">
+                                <div class="form-group" *ngIf="item['primary_prompt']">
+                                    <label class="h6 c-black">
+                    <strong>{{item['primary_prompt']}}</strong>
+                  </label>
+                                </div>
+
+                                <div class="form-group p-b-4">
+                                    <label class="light_gray_text" *ngIf="item['secondary_prompt']">
+                    {{item['secondary_prompt']}}
+                  </label>
+                                    <textarea *ngIf="item['text_field_size']" name="text_item_{{item?.id}}" attr.exercise-item-id="{{item?.id}}" value="{{item?.user_answer}}" attr.type-item="{{item.type}}" [rows]="(item['text_field_size']=='T_2_LINE'?2:(item['text_field_size']=='T_3_LINE'?3:1))"
+                                        class="form-control">{{item['text_field_value']}}</textarea>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'RADIO'">
+                                <div class="form-group" *ngIf="item['primary_prompt']">
+                                    <label class="h6 c-primary"><strong>{{item['primary_prompt']}}</strong></label>
+                                </div>
+
+                                <div class="form-group" *ngIf="item['secondary_prompt']">
+                                    <label class="light_gray_text">{{item['secondary_prompt']}}</label>
+                                </div>
+
+                                <div *ngFor="let option of item['options']">
+                                    <span class="radio-container">
+                    <label class="form-group">
+                      <input class="form-group" type="radio" name="option_id_{{item.id}}"
+                        id="option_radio_{{item.id}}{{ option?.id }}" value="{{option.title}}"
+                        attr.type-item="{{item.type}}" attr.exercise-item-id="{{ item?.id }}"
+                        attr.exercise-item-details-id="{{option?.id}}" [checked]="option.checked" />
+                      <span class="c-black option">{{option.title}}</span>
+                                    </label>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div *ngSwitchCase="'CHECKBOX'">
+                                <div class="form-group" *ngIf="item['primary_prompt']">
+                                    <label class="h6 c-primary"><strong>{{item['primary_prompt']}}</strong></label>
+                                </div>
+
+                                <div class="form-group" *ngIf="item['secondary_prompt']">
+                                    <label class="light_gray_text">
+                    {{item['secondary_prompt']}}
+                  </label>
+                                </div>
+
+                                <div *ngFor="let option of item['options']">
+                                    <label class="checkbox-container">
+                    <span class="c-black">{{option.title}}</span>
+                    <input class="form-group" type="checkbox" id="option_checkbox_{{item.id}}{{ option?.id }}"
+                      attr.type-item="{{item.type}}" value="{{option.title}}" attr.exercise-item-id="{{ item?.id }}"
+                      attr.exercise-item-details-id="{{option?.id}}" [checked]="option.checked" />
+                    <span class="checkmark "></span>
+                  </label>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'TWO_COL'">
+                                <div class="form-group" *ngIf="item['primary_prompt']">
+                                    <label class="h6 c-black"><strong>{{item['primary_prompt']}}</strong></label>
+                                </div>
+
+                                <div *ngFor="let repeat of repeatArray(item?.number_of_items); let twoInd=index">
+                                    <div class="form-group col-md-3 col-r-p">
+                                        <label class="f-14 pb-2 light_gray_text">{{item['first_heading']}}</label>
+                                        <input class="form-control" id="first_two_col_{{item.id}}{{twoInd}}" attr.type-item="{{item.type}}" attr.exercise-item-id="{{ item?.id }}" value="{{item?.user_answer?item?.user_answer[twoInd]['response_1']:''}}" />
+                                    </div>
+
+                                    <div class="form-group col-md-9">
+                                        <label class="f-14 pb-2 light_gray_text">{{item['second_heading']}}</label>
+                                        <input class="form-control" id="second_two_col_{{item.id}}{{twoInd}}" attr.exercise-item-id="{{ item?.id }}" value="{{item?.user_answer?item?.user_answer[twoInd]['response_2']:''}}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'RATING'">
+                                <div class="form-group col-md-10 col-r-p">
+                                    <label class="h6 c-primary"><strong>{{item['first_heading']}}</strong></label>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label class="h6 c-primary"><strong>{{item['second_heading']}}</strong></label>
+                                </div>
+
+                                <div *ngFor="let option of item['options'];let rtInd=index">
+                                    <div class="form-group col-md-10 col-r-p">
+                                        <label class="c-black">{{option.title}}</label>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <select class="form-control" id="rating_admin_{{item.id}}{{rtInd}}" attr.type-item="{{item.type}}" attr.exercise-item-id="{{ item?.id }}" attr.exercise-item-details-id="{{option?.id}}">
+                      <option class="light_gray_text" *ngIf="(option.checked)" selected>{{option['checked']}}</option>
+                      <option class="light_gray_text" *ngIf="!(option.checked)" selected>Please select</option>
+                      <option value="1 (low control)">1 (low control)</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4 (high control)"> 4 (high control)</option>
+                    </select>
+                                    </div>
+                                </div>
+
+                                <div *ngFor="let repeat of repeatArray(item?.number_of_items);let rtInd2=index">
+                                    <div class="form-group p-4 col-md-10 col-r-p">
+                                        <input class="form-control" placeholder="Please enter Other Obstacles" attr.type-item="{{item.type}}" id="rating_first_{{item.id}}{{rtInd2}}" attr.exercise-item-id="{{ item?.id }}" value="{{item?.user_answer?item?.user_answer[rtInd2]['response_1']:''}}"
+                                        />
+                                    </div>
+
+                                    <div class="form-group p-4 col-md-2">
+                                        <select class="form-control" id="rating_second_{{item.id}}{{rtInd2}}" attr.exercise-item-id="{{ item?.id }}" attr.type-item="{{item.type}}">
+                      <option class="light_gray_text"
+                        *ngIf="item?.user_answer?item?.user_answer[rtInd2]['response_2']:false" selected>
+                        {{item['user_answer'][rtInd2]?.response_2}}</option>
+                      <option class="light_gray_text"
+                        *ngIf="!(item?.user_answer?item?.user_answer[rtInd2]['response_2']:false)" selected>Please
+                        select</option>
+                      <option value="1 (low control)">1 (low control)</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4 (high control)"> 4 (high control)</option>
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'GOAL'">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="h6 c-black"><strong>{{item['first_heading']}}</strong></label>
+                                    </div>
+
+                                    <div *ngFor="let option of item['options'];let glInd=index">
+                                        <label class="checkbox-container">
+                      <span class="light_gray_text">{{option.title}}</span>
+                      <input value="{{option.title}}" type="checkbox" id="option_gl_{{item.id}}{{ option?.id }}"
+                        attr.validate={{item?.type}} value="{{option.title}}" attr.type-item="{{item?.type}}"
+                        [checked]="option.checked" attr.exercise-item-id="{{ item?.id }}"
+                        attr.goal-id="{{option?.id}}" />
+                      <span class="checkmark "></span>
+                    </label>
+                                    </div>
+
+                                    <div class="form-group" *ngFor="let repeat of repeatArray(3);let glInd2=index">
+                                        <input class="form-control" placeholder="Please write your goals" attr.exercise-item-id="{{ item?.id }}" value="{{item?.user_answer?item.user_answer[glInd2]['response_1']:''}}" id="gl_text_{{item.id}}{{ item?.id }}" attr.type-item="{{item?.type}}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'GOAL_TRACKING'">
+                                <div *ngFor="let headding of item?.headings;let gltInd=index">
+                                    <div class="form-group">
+                                        <label class="h6 c-black"><strong>{{headding}}</strong></label>
+                                    </div>
+
+                                    <div *ngIf="gltInd==0 && item?.options">
+                                        <div *ngFor="let option of item?.options;let i=index">
+                                            <label class="light_gray_text">
+                        Goal {{i+1}}:{{option['title']}}
+                      </label>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="(gltInd==1 || gltInd==2) && item?.number_of_items">
+                                        <div class="form-group" *ngFor="let repeat of repeatArray(item?.number_of_items);let gltInd2=index">
+                                            <label class="light_gray_text">
+                        Goal {{gltInd2+1}}
+                      </label>
+                                            <input class="form-control" attr.exercise-item-id="{{ item?.id }}" value="{{getGoalTrack(item?.user_answer,gltInd,gltInd2)}}" id="glt_text_{{item.id}}{{ item?.id }}" attr.type-item="{{item?.type}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification" [ngClass]="pageContent?.worksheet_id?'':'hidden-block'">
+                        <div class="content">
+                            <label class="f-14 pb-2 c-gray"><strong>Here’s you can download the worksheet to practice
+                  home…..</strong></label>
+                        </div>
+                        <div class="download">
+                            <div class="download-label">
+                                <label class="f-14">
+                  <a href="{{pageContent?.worksheet_id ? url+pageContent?.worksheet_id : 'javascript:void(0)'}}"
+                    title="Download worksheet"><strong>Download
+                      home practice
+                      worksheet</strong></a>
+                </label>
+                            </div>
+                            <div class="download-icon">
+                                <span class="sm-pdf"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-line">
+                        <button type="submit" [value]="next" class="pull-right btn btn-sky" style="margin-left: 5px;" (click)="updateExercise(next,'NEXT')">Save</button>
+
+                        <button type="submit" [value]="pre" *ngIf="pre!='end'" class="pull-right btn btn-sky" [disabled]="pre=='end'?'true':''" (click)="updateExercise(pre,'PREV')">Previous</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

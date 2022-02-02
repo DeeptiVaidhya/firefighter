@@ -1,0 +1,36 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="primary-body">
+    <div>
+        <div class="container">
+            <div class="row min-h">
+                <div class="scope-head m-b-30">
+                    <h1 class="scope-head-h1">Where do these Toxins Come From?
+                        <p class="module"><a routerLink="/patient/module-2/intro">Module 2</a></p>
+                    </h1>
+                    <p class="sub-title">Click on the room to find out more about the relation between chemicals in the home and cancer:</p>
+                </div>
+                <div class="col-xs-12 bg-white p-b-20">
+                    <img src="assets/images/module-2/toxins.png" [hidden]="!normalToxin" alt="Firefighter Cancer Risk" style="width:100%" />
+                    <img src="assets/images/module-2/toxins-tv.png" [hidden]="!tvClicked" alt="Firefighter Cancer Risk" style="width:100%" />
+                    <img src="assets/images/module-2/toxins-couch.png" [hidden]="!couchClicked" alt="Firefighter Cancer Risk" style="width:100%" />
+                    <div class="clickable clickable-tv" (click)="areaClicked('TV')">
+                        <div *ngIf="!!tvClicked">
+                            <img src="assets/images/module-2/warning.png" alt="Warning" />
+                            <span>Electronic devices are a complex mixture of several hundred materials. Many of these contain toxic heavy metals such as lead, mercury, cadmium and beryllium, as well as hazardous chemicals, such as brominated flame retardants. Polluting PVC plastic is
+							also frequently used.</span>
+                            <a (click)="closePopOver($event)">&times;</a>
+                        </div>
+                    </div>
+                    <div class="clickable clickable-couch" (click)="areaClicked('COUCH')">
+                        <div *ngIf="!!couchClicked">
+                            <img src="assets/images/module-2/warning.png" alt="Warning" />
+                            <span>The sofa-beds containing flame retardants burnt somewhat more slowly than the non-flame retarded EU sofa-bed, but in doing so produced significantly greater quantities of the main fire toxicants, carbon monoxide and hydrogen cyanide.</span>
+                            <a (click)="closePopOver($event)">&times;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-previous-next-buttons [isNextButtonDisabled]="!!normalToxin" nextButtonText="Finish"></app-previous-next-buttons>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+.clickable {
+    position: absolute;
+    cursor: pointer;
+}
+
+.clickable>div {
+    position: absolute;
+    width: 430px;
+    background: #F47525;
+    color: #FFF;
+    padding: 20px;
+}
+.clickable>div img,
+.clickable>div span {
+    display: inline-block;
+}
+
+.clickable>div img {
+    width: 55px;
+    vertical-align: top;
+}
+
+.clickable>div span {
+    width: calc(100% - 55px);
+    padding-left: 20px
+}
+
+.clickable>div a {
+    position: absolute;
+    color: #FFF;
+    right: 10px;
+    top: 5px;
+    font-size: 32px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.clickable-tv {
+    width: 20%;
+    height: 32%;
+    top: 13.2%;
+    left: 18.65%;
+}
+
+.clickable-tv>div {
+    top: 0;
+    left: 125%;
+}
+
+.clickable-tv>div::before {
+    left: -25px;
+    top: 0;
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 25px 25px 0;
+    border-color: transparent #F47525 transparent transparent;
+}
+
+.clickable-couch {
+    width: 35.5%;
+    height: 28.5%;
+    top: 46%;
+    left: 44.3%;
+}
+
+.clickable-couch>div {
+    bottom: 10px;
+    right: 112%;
+}
+
+.clickable-couch>div::after {
+    right: -25px;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 25px 25px 0;
+    border-color: transparent transparent #F47525 transparent;
+}
+@media (max-width: 767px) {
+    .clickable-couch>div {
+        right: 100%;
+    }
+    .clickable>div span {
+        width: 100%; 
+    }
+    .clickable>div>img {
+        display: block;
+        margin: 0 auto;
+    }
+    .clickable>div {
+        width: 322px;
+        padding: 15px;
+    }
+    .clickable-couch>div::after {
+        right: -25px;
+        bottom: 86%;    
+    }
+}
+@media (max-width: 540px) {
+    .clickable-couch>div {
+        right: 100%;
+    }
+    .clickable>div span {
+        width: 100%; 
+    }
+    .clickable>div>img {
+        display: block;
+        margin: 0 auto;
+    }
+    .clickable>div {
+        width: 200px;
+        padding: 15px;
+        bottom: -180px;
+    }
+    .clickable-couch>div::after {
+        right: -25px;
+        bottom: 86%;    
+    }
+}

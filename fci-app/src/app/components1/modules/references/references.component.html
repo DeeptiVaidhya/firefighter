@@ -1,0 +1,23 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="video reducing-risk">
+    <div class="container">
+        <div class="row min-h">
+            <div class="scope-head">
+                <h1 class="scope-head-h1">References</h1>
+            </div>
+            <div class="scope-content">
+                <div class="col-xs-12 meta-analysis-left p-t-20">
+                    <div class="row m-b-10" *ngFor="let refer of references">
+                        <div class="orange-bg">
+                            <div class="col-xs-12">
+                                <img alt="resource" class="img-left" src="assets/images/module-3/resource.png" />
+                                <button class="read-more pull-right">Read more</button>
+                                <p class="text-white font-normal mb-0">{{refer?.text_normal}}<span class="text-bold text-white">{{refer?.text_bold}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

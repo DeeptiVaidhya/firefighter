@@ -1,0 +1,107 @@
+<div class="inner-content p-b-50">
+
+    <app-inner-page-header page_title="Demographic"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <form action="" class="ot-form">
+          <div class="row">
+		      <div class="col-md-12">
+            <!--class="col-lg-6"  -->
+                <div  *ngFor="let question of questions">
+                    <div class="form-group" >
+                        <label class="h6 c-primary m-t-20">{{question.question}}</label>
+                    </div> 
+                
+                    <div *ngIf="question?.item['radio']" id="ques_{{question?.id}}">
+                        <div *ngFor="let option of question?.item['radio']" class="box-inline">
+                            <div class="m-b-20 m-t-20" >
+                                <span class="radio-container">
+                                    <label class="form-group">
+                                      <input  class="form-group" type="radio" name="{{'op_'+question.id}}"
+                                        id="{{'op_'+question.id+'_'+option?.id}}"
+                                       [value]="option.option_label"
+                                       [checked]="isChecked(option,question.id)" 
+                                        attr.question-id="{{question?.id}}"
+                                        attr.op-type="{{option?.field_type}}"
+                                        attr.option-id="{{option?.id}}"
+                                        attr.isOther-id="{{option?.is_other_option}}"
+                                        attr.dependentQues-id="{{option?.dependent_question_id}}"
+                                        (click)="optionAction()"
+                                      />
+                                      <span class="c-black option">{{option.option_label}}</span>
+                                    </label>
+                                </span>
+                            </div>
+
+                            <input *ngIf="option['is_other_option']=='1'" class="form-control input-lg" disabled="false" type="text" 
+                                id="{{'text_other_'+question.id+'_'+option.id}}" [value]="option?.option_value"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="question?.item['text']" id="ques_{{question?.id}}">
+                        <div *ngFor="let option of question?.item['text']">
+                        <div>
+                            <input class="form-control input-lg" type="text" 
+                            name="{{'text_'+question.id+'_'+option.id}}" [value]="option?.response" 
+                            attr.question-id="{{question?.id}}"
+                            attr.op-type="{{option?.field_type}}"
+                            attr.option-id="{{option?.id}}"
+
+                            />
+                        
+                        </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="question?.item['checkbox']" id="ques_{{question?.id}}">
+                        <div *ngFor="let option of question?.item['checkbox']"> 
+                            <div>
+                                <label class="checkbox-container">
+                                    <span class="c-black">{{option.option_label}}</span>
+                                    <input class="form-group" type="checkbox" 
+                                    name="{{'op_'+question.id}}"
+                                    id="op_checkbox_{{question.id}}_{{ option?.id }}" value="{{option.option_label}}" 
+                                    
+                                    attr.question-id="{{question?.id}}"
+                                    attr.option-id="{{option?.id}}"
+                                    attr.isOther-id="{{option?.is_other_option}}"
+
+                                    [checked]="isChecked(option,question.id)" 
+                                    />
+                                    <span class="checkmark "></span>
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="question?.item['dropdown']" id="ques_{{question?.id}}">
+                        <div>
+                            <select value="" attr.question-id="{{question?.id}}"  name="{{'select_'+question.id}}" >
+                                <option value="">Select any value</option>
+                                <option *ngFor="let op of setRange(question?.item['dropdown'],option?.min_value,option?.max_value)" value="{{op.id}}-{{op.option_value}}"
+                                 attr.option-id="{{op?.id}}" 
+                                 [selected]="op?.response==op?.option_label"
+                                 >{{op.option_label}}</option>
+                            </select>                        
+                        </div>
+                    </div>
+
+                     <p id="error_{{question?.id}}" class="error hidden">This field required</p>
+                </div>
+          </div>
+		</div>
+        <div class="d-line">
+            <button
+                type="submit"
+                class="btn btn-green pull-right btn-250"
+                (click)="saveDemographic()"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+        
+    </div>
+</div>

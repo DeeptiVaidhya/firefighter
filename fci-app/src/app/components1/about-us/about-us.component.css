@@ -1,0 +1,12 @@
+.about-bottom {
+    background: #f7fafc;
+}
+
+.about-bottom p,
+.about-bottom ul li {
+    font-family: 'open_sansregular';
+    padding-bottom: 10px;
+}
+.filled-bullet li:before {
+    top: -2px;
+}

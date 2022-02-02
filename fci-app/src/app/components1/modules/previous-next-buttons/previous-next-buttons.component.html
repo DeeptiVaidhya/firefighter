@@ -1,0 +1,13 @@
+<div class="row m-t-40">
+    <div class="col-sm-2 col-xs-12 mob-device">
+        <button class="btn btn-secondary btn-block" (click)="navigate('BACK')">BACK</button>
+    </div>
+    <div class="col-sm-8 col-xs-12">
+        <h2 class="video-title">{{title}}</h2>
+    </div>
+    <div class="col-sm-2 col-xs-12 mob-device">
+        <button class="btn btn-block" [disabled]="isNextButtonDisabled"
+            [ngClass]="isNextButtonDisabled?'btn-finish':(nextButtonText=='Next Module'?'w-190px btn-primary':' btn-primary')"
+            (click)="navigate('NEXT')">{{nextButtonText | uppercase}}</button>
+    </div>
+</div>

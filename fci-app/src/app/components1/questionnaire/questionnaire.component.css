@@ -1,0 +1,135 @@
+.questionnaire-tbl {
+    padding-bottom: 10px;
+}
+
+.questionnaire-tbl thead>tr>th {
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Montserrat-Bold';
+    border-bottom: 1px solid #e6edf0;
+}
+
+.questionnaire-tbl thead>tr {
+    border-top: 1px solid #e6edf0;
+}
+
+.questionnaire-tbl tbody tr td {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Montserrat-SemiBold';
+    border-top: 0 none;
+    border-bottom: 1px solid #e6edf0;
+    vertical-align: middle;
+}
+
+.questionnaire-tbl tbody>tr>td:first-child {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    background-color: #f7f9fa;
+}
+
+.questionnaire-tbl .m-option {
+    display: none;
+}
+
+.modal-header,
+.modal-footer {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+.btn-confirm {
+    color: #fff;
+    background-color: #B10EA4;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.col-md-6 .btn {
+    height: 50px;
+    font-size: 13px;
+    line-height: 26px;
+    margin-top: 20px;
+    width: 250px;
+
+}
+
+
+@media (max-width: 991px) {
+    .questionnaire-tbl tbody>tr>td:first-child {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .questionnaire-tbl tbody tr td {
+        padding: 20px 0;
+        font-size: 16px;
+    }
+
+    .questionnaire-tbl thead>tr>th {
+        padding: 10px 5px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .questionnaire-tbl thead>tr>th {
+        padding: 15px 20px;
+        font-size: 16px;
+        top: 50px;
+        z-index: 5;
+        position: -webkit-sticky;
+        position: sticky;
+        background: #fff;
+    }
+
+
+    .questionnaire-tbl tbody tr td {
+        padding: 20px;
+        font-size: 16px;
+        width: 100%;
+        /*display: inline-block;
+		text-align: right;*/
+    }
+
+    .questionnaire-tbl tbody>tr>td:first-child {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* .questionnaire-tbl thead {
+		display: none;
+	} */
+
+    .questionnaire-tbl .m-option {
+        display: block;
+        text-align: left;
+        vertical-align: middle;
+        width: 90%;
+        float: left;
+    }
+
+    .questionnaire-tbl {
+        /* border: 1px solid #e6edf0; */
+        margin-bottom: 40px;
+        padding-bottom: 0;
+    }
+
+    .questionnaire-tbl tbody tr td:last-child {
+        /*border-top: 0 none;*/
+    }
+
+    .questionnaire-tbl .table {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .radio-container span {
+        position: relative;
+        padding-left: 20px;
+        top: -5px;
+    }
+}

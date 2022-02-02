@@ -1,0 +1,13 @@
+.thank-you {
+    background: #00502F;
+    justify-content: left;
+    height: 100%;
+}
+
+.thank-you .introduction {
+    background: #00502F;
+}
+
+.thank-you .row {
+    width: 100%;
+}

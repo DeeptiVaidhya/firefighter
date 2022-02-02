@@ -1,0 +1,86 @@
+<div class="inner-content p-b-50">
+    <app-inner-page-header page_title="Hi, {{this.username}}"></app-inner-page-header>
+
+    <app-breadcrumb [breadcrumb]="breadcrumb" (onClickTitle)="goToElem($event)"></app-breadcrumb>
+    <div>
+        <div class="container">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+			</nav> -->
+            <h4 class="head">Firefighter Cancer Survivorship Program.</h4>
+            <!-- <div class="col-md-5 col-sm-6 col-xs-12 v-middle">
+                <div class="img-bg">
+                    <div class="img">
+                        <img src="assets/images/quote_bg.jpg" alt="Quotes" />
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="col-md-7 col-sm-6 col-xs-12 v-middle">
+                <ng-container *ngFor="let weekInfo of currentWeekInfo; let i=index">
+                    <div class="achievements-bg" *ngIf="currentWeek == weekInfo?.week_number" [ngClass]="currentWeek>0 ? (currentWeek == weekInfo?.week_number ? 'disabled' : '') : ''">
+                        <h6 class="enabled">Achievements and Events</h6>
+                        <div class="row">
+                            <div class="col-xs-4 icon">
+                                <i class="sm-events  c-d-blue" [ngClass]="showAward(weekInfo, 'ribbon', i)"></i>
+
+                            </div>
+                            <div class="col-xs-4 icon">
+                                <i class="sm-achievements c-secondary" [ngClass]="showAward(weekInfo, 'medal', i)"></i>
+                            </div>
+                            <div class="col-xs-4 icon">
+                                <i class="sm-award c-orange" [ngClass]="showAward(weekInfo, 'trophy', i)"></i>
+
+                            </div>
+                            <div class="col-xs-12 text-right">
+                                <a (click)="viewAllAchivement()" href="javascript:void(0)" class="f-medium">View all achievements and events</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="achievements-bg disabled" *ngIf="!(currentWeekInfo && currentWeekInfo.length) || currentWeek<0">
+
+                    <h6 class="enabled">Achievements and Events</h6>
+                    <div class="row">
+                        <div class="col-xs-4 icon">
+                            <i class="sm-events c-d-blue disabled"></i>
+
+                        </div>
+                        <div class="col-xs-4 icon">
+                            <i class="sm-achievements c-pink disabled"></i>
+
+                        </div>
+                        <div class="col-xs-4 icon">
+                            <i class="sm-award disabled"></i>
+
+                        </div>
+                        <div class="col-xs-12 text-right">
+                            <a (click)="viewAllAchivement()" href="javascript:void(0)" class="f-medium">View all
+                                achievements and events</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="container">
+            <!-- 
+            <div class="h4">FCI Sessions and Materials:</div> -->
+            <div class="dashboard-list">
+                <ul>
+                    <li *ngFor="let chapter of pageContent">
+                        <a [routerLink]="chapter.slug" title="{{chapter.content_name}}" class="chapter-links">
+                            <img src="{{ chapter.image }}" alt="{{ chapter.content_name }}" width="100%">
+                            <h6 class="c-secondary text-center p-t-10">
+                                {{ chapter.content_name }}
+                            </h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

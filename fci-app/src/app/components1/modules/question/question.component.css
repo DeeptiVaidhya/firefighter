@@ -1,0 +1,33 @@
+.btn {
+    padding: 10px 30px;
+    white-space: normal;
+}
+
+.btn-primary {
+    width: 250px;
+}
+
+.font-24 {
+    font: Bold 24px/30px Arial;
+}
+
+.font-32 {
+    font: Bold 32px/37px Arial;
+}
+
+.question {
+    padding-top: 100px;
+    display: block;
+}
+
+.btn-default.disabled.focus,
+.btn-default.disabled:focus,
+.btn-default.disabled:hover,
+.btn-default[disabled].focus,
+.btn-default[disabled]:focus,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default.focus,
+fieldset[disabled] .btn-default:focus,
+fieldset[disabled] .btn-default:hover {
+    background-color: #D3D3D3;
+}

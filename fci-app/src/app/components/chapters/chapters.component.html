@@ -1,0 +1,219 @@
+<div class="inner-content p-b-50">
+    <div class="inner-header">
+        <div class="container-fluid primary-bg header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>
+                            {{ pageContent?.content_name }}
+                            <!-- <i class="c-pointer {{is_added_favorite?'sm-minus-like':'sm-add-like'}}" *ngIf="!!is_sub_topic" (click)="favorite(pageContent?.id)"></i> -->
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-breadcrumb [breadcrumb]="breadcrumb" (onClickTitle)="goToElem($event)"></app-breadcrumb>
+    <div class="container chapter-content">
+        <div class="row">
+            <!-- start content-left -->
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <h4 class="p-b-20">{{ pageContent?.first_paragraph }}</h4>
+                <ng-container *ngFor="let detail of pageContent?.content_details;let i=index;">
+                    <p class="content-p cont-tbl" *ngIf="detail?.text" [innerHtml]="detail?.text | safeHtml"></p>
+                    <div class="text-center content-p content-inner-img" *ngIf="detail?.image" [innerHtml]="detail?.image | safeHtml"></div>
+                    <p class="content-p h9" *ngIf="detail?.credit">Credit: {{ detail?.credit }}</p>
+                    <div class="row section" *ngIf="detail?.resource_data">
+                        <div class="col-xs-12">
+                            <div class="section-content" *ngIf="detail?.resource_data?.type == 'AUDIO' || detail?.resource_data?.type == 'VIDEO'">
+                                <span class="sm-video c-orange sec-icon"></span>
+                                <div class="sec-desc">
+                                    <p class="h8">{{ detail?.resource_data?.title }}</p>
+                                    <p class="h9" *ngIf="(detail?.resource_data?.is_completed || detail?.resource_data?.id == resourceId) && detail?.resource_data?.type == 'VIDEO'">
+                                        <i class="glyphicon glyphicon-ok"></i><b><em>video watched</em></b></p>
+                                    <p class="h9" *ngIf="(detail?.resource_data?.is_completed || detail?.resource_data?.id == resourceId) && detail?.resource_data?.type == 'AUDIO'">
+                                        <i class="glyphicon glyphicon-ok"></i><b><em>Audio played</em></b></p>
+                                    <p class="h9">{{ detail?.resource_data?.description }}</p>
+                                </div>
+                                <a id="resource--{{detail?.resource_data?.id}}" href="javascript:void(0)" class="btn btn-blue btn-block sec-button" (click)="openModal(detail?.resource_data)" title="{{detail?.resource_data?.title}}" *ngIf="detail?.resource_data?.link">{{ detail?.resource_data?.type }}</a>
+                            </div>
+
+                            <div class="section-content" *ngIf="detail?.resource_data?.type == 'READING' || detail?.resource_data?.type == 'WEBSITE'">
+                                <span class="sm-video c-orange sec-icon"></span>
+                                <div class="sec-desc">
+                                    <p class="h8">{{ detail?.resource_data?.title }}</p>
+                                    <p class="h9">{{ detail?.resource_data?.description }}</p>
+                                </div>
+                                <a href="javascript:void(0)" class="btn btn-blue btn-block sec-button" (click)="goToSite(detail?.resource_data)" target="_blank" title="{{detail?.resource_data?.title}}" *ngIf="detail?.resource_data?.link">{{ detail?.resource_data?.type }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="row" *ngFor="let topic of pageContent?.topic; let i = index">
+
+                    <div class="col-xs-12">
+                        <accordion class="main-accordion" [closeOthers]="true">
+                            <accordion-group id="topic--{{topic?.slug}}" #res0>
+                                <div accordion-heading class="row clearfix">
+                                    <span class="col-xs-10 h6 d-flex"><span
+                                            class="sm-article c-orange sec-icon m-r-15"></span>{{ topic?.title }}</span>
+                                    <span class="col-xs-2 text-right h6">
+                                        <i [ngClass]="res0?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                                    </span>
+                                </div>
+                                <div class="">
+                                    <!-- accordion-inner -->
+                                    <p class="content-p" *ngIf="topic?.first_paragraph" [innerHtml]="topic?.first_paragraph | safeHtml"></p>
+
+                                    <ng-container *ngFor="let description of changeObject(topic?.description)">
+                                        <p class="content-p" *ngIf="description?.text" [innerHtml]="description?.text | safeHtml">
+                                        </p>
+                                        <div class="text-center content-p content-inner-img" *ngIf="description?.image" [innerHtml]="description?.image | safeHtml"></div>
+                                        <p class="content-p h9" *ngIf="description?.credit">Credit: {{ description?.credit }}</p>
+
+                                    </ng-container>
+
+                                    <div class="row section" *ngIf="topic?.resource_data">
+                                        <div class="col-xs-12" *ngFor="let topicRes of topic?.resource_data;let i=index;">
+                                            <div class="section-content" *ngIf="topicRes?.type == 'VIDEO' || topicRes?.type == 'AUDIO'">
+                                                <span class="sm-video c-orange sec-icon"></span>
+                                                <div class="sec-desc">
+                                                    <p class="h8">{{ topicRes?.title }}</p>
+                                                    <p class="h9" *ngIf="(topicRes?.is_completed || topicRes?.id == resourceId) && topicRes?.type == 'VIDEO'">
+                                                        <i class="glyphicon glyphicon-ok"></i><b><em>video
+                                                                watched</em></b></p>
+                                                    <p class="h9" *ngIf="(topicRes?.is_completed || topicRes?.id == resourceId) && topicRes?.type == 'AUDIO'">
+                                                        <i class="glyphicon glyphicon-ok"></i><b><em>Audio
+                                                                played</em></b></p>
+                                                    <p class="h9">{{ topicRes?.description }}</p>
+                                                </div>
+                                                <a id="resource--{{topic?.resource_data?.id}}" href="javascript:void(0)" class="btn btn-blue btn-block sec-button" (click)="openModal(topicRes, topic?.id)" title="{{topicRes?.title}}" *ngIf="topicRes?.link">{{ topicRes?.type }}</a>
+                                            </div>
+                                            <div class="section-content" *ngIf="topicRes?.type == 'READING' || topicRes?.type == 'WEBSITE'">
+                                                <span class="sm-video c-orange sec-icon"></span>
+                                                <div class="sec-desc">
+                                                    <p class="h8">{{ topicRes?.title }}</p>
+                                                    <p class="h9">{{ topicRes?.description }}</p>
+                                                </div>
+                                                <a href="javascript:void(0)" class="btn btn-blue btn-block sec-button" (click)="goToSite(topicRes)" target="_blank" title="{{topicRes?.title}}" *ngIf="topicRes?.link">{{ topicRes?.type }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </accordion-group>
+                        </accordion>
+                    </div>
+
+                </div>
+                <!-- <div class="row" *ngIf="!!is_sub_topic">
+                    <div class="col-xs-12 well">
+                        <strong (click)="favorite(pageContent?.id)">
+                            <i class="{{is_added_favorite?'sm-minus-like':'sm-add-like'}}"></i>
+                            {{is_added_favorite?'Remove from':'Add to'}} favorites
+                        </strong>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- end content-left -->
+
+            <!-- start content-right -->
+            <div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
+                <div class="content-right-bg m-b-40" *ngIf="pageContent?.side_resources?.exercises != '' && pageContent?.side_resources?.exercises">
+                    <div class="col-xs-12">
+                        <div class="h6">Exercises for this section</div>
+                    </div>
+                    <div class="content-right-inner" *ngFor="let exercise of pageContent?.side_resources?.exercises;let i=index;">
+                        <div class="col-xs-10">
+                            <p class="h8 c-orange">
+                                <a href="javascript:void(0)" (click)="goToexercise(exercise,i)" title="{{  exercise.title }}">{{ exercise.title }}</a>
+                            </p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="sm-exercise c-orange sec-icon"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-right-bg m-b-40" *ngIf="pageContent?.side_resources?.reading != '' && pageContent?.side_resources?.reading">
+                    <div class="col-xs-12">
+                        <div class="h6">Reading for this section</div>
+                    </div>
+                    <div class="content-right-inner" *ngFor="let reading of pageContent?.side_resources?.reading">
+                        <div class="col-xs-10">
+                            <p class="h8 c-orange">
+                                <a href="javascript:void(0)" (click)="goToSite(reading)" target="_blank" title="{{ reading.title }}">{{ reading.title }}</a>
+                            </p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="sm-article c-orange sec-icon"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-right-bg m-b-40" *ngIf="pageContent?.side_resources?.video != '' && pageContent?.side_resources?.video">
+                    <div class="col-xs-12">
+                        <div class="h6">Video for this section</div>
+                    </div>
+                    <div class="content-right-inner" *ngFor="let video of pageContent?.side_resources?.video">
+                        <div class="col-xs-10">
+                            <p class="h8 c-orange">
+                                <a href="javascript:void(0)" (click)="openModal(video, video?.chapter_has_content_id)">{{ video.title }}</a>
+                            </p>
+                            <p class="h9" *ngIf="video?.is_completed || resourceId == video.id"><i class="glyphicon glyphicon-ok"></i><b><em>video watched</em></b></p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="sm-video c-orange sec-icon"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="content-right-bg m-b-40" *ngIf="pageContent?.side_resources?.audio != '' && pageContent?.side_resources?.audio">
+                    <div class="col-xs-12">
+                        <div class="h6">Audio for this section</div>
+                    </div>
+                    <div class="content-right-inner" *ngFor="let audio of pageContent?.side_resources?.audio">
+                        <div class="col-xs-10">
+                            <p class="h8 c-orange">
+                                <a class="res-icon" href="javascript:void(0)" (click)="openModal(audio, audio?.chapter_has_content_id)">{{ audio.title }}</a>
+                            </p>
+                            <p class="h9" *ngIf="audio?.is_completed || resourceId == audio.id"><i class="glyphicon glyphicon-ok"></i><b><em>Audio played</em></b></p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="sm-audio c-orange sec-icon"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-right-bg" *ngIf="pageContent?.side_resources?.website != '' && pageContent?.side_resources?.website">
+                    <div class="col-xs-12">
+                        <div class="h6">Website for this section</div>
+                    </div>
+                    <div class="content-right-inner" *ngFor="let web of pageContent?.side_resources?.website">
+                        <div class="col-xs-10">
+                            <p class="h8 c-orange">
+                                <a class="res-icon" href="javascript:void(0)" (click)="goToSite(web)" target="_blank" title="{{ web.title }}">{{ web.title }}</a>
+                            </p>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="sm-resource c-orange sec-icon"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end content-right -->
+        <div class="row p-t-b" *ngIf="next_previous_subtopic?.next_url || next_previous_subtopic?.prev_url">
+            <div class="col-md-6 text-left p-b-20">
+                <a href="javascript:void(0)" routerLink="/patient/dashboard/{{next_previous_subtopic?.prev_url}}" class="btn btn-blue btn-250 sec-button" *ngIf="next_previous_subtopic?.prev_url">Previous</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="javascript:void(0)" routerLink="/patient/dashboard/{{next_previous_subtopic?.next_url}}" class="btn btn-blue btn-250 sec-button" *ngIf="next_previous_subtopic?.next_url">Next</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-inquiry-mood-modal [calleePage]="slug" [contentId]="contentId" [resourceDetail]="resourceDetail" *ngIf="!!modalIsShown" [modalIsShown]="modalIsShown" (onCloseModal)="modalClosed()" (onVideoUpdated)="videoTimeUpdated($event)"></app-inquiry-mood-modal>
+<app-breadcrumb [breadcrumb]="breadcrumb" (onClickTitle)="goToElem($event)" isFooter="!1"></app-breadcrumb>

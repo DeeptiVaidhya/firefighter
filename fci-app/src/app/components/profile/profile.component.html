@@ -1,0 +1,87 @@
+<div class="inner-content p-b-50">
+    <!-- <app-inner-page-header page_title="My Details" back_link="/patient/dashboard" back_title="Dashboard"></app-inner-page-header> -->
+
+    <app-inner-page-header page_title="My Details"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <form [formGroup]="profileForm" autocomplete="off" class="ot-form" (ngSubmit)="updateProfile()">
+                    <div class="h5 p-b-20">Edit personal details</div>
+                    <!-- Name, Email, Country, and Address (optional). -->
+                    <div class="form-group">
+                        <label for="first_name">Name</label>
+                        <input class="form-control" value="{{user_detail['first_name']}}" formControlName="first_name" id="first_name" type="text" [class.invalid]="!profileForm.controls.first_name.valid && (profileForm.controls.first_name.dirty)" [(ngModel)]="user_detail['first_name']"
+                        />
+
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.first_name.hasError('required') && profileForm.controls['first_name'].dirty">Name field is required.</p>
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.first_name.hasError('pattern') && profileForm.controls['first_name'].touched">Please enter a valid name.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" value="{{ user_detail['email'] }}" formControlName="email" id="email" type="text" (blur)="isEmailUnique($event.target.value)" [class.invalid]="!profileForm.controls.email.valid && (profileForm.controls.email.dirty)" [(ngModel)]="user_detail['email']"
+                        />
+
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.email.hasError('required') && profileForm.controls['email'].dirty">
+                            Email field is required.</p>
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.email.hasError('pattern') && profileForm.controls['email'].dirty">
+                            Please enter a valid email.</p>
+                        <p class="error m-0-auto" *ngIf="!is_unique_email">
+                            {{is_unique_email_msg}}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+
+                        <select formControlName="country" id="country" [class.invalid]="!profileForm.controls.country.valid && (profileForm.controls.country.dirty)" [(ngModel)]="user_detail['countries_id']">
+                            <option value="">Select Country</option>
+                            <option *ngFor="let cName of countryName" value="{{cName.id}}" [attr.selected]="user_detail['countries_id']==cName.id ? true : null">{{cName.country}}</option>
+                        </select>
+
+                        <p class="error" *ngIf="profileForm.controls['country'].hasError('required') && profileForm.controls['country'].touched">Please Select Country</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input class="form-control" value="{{ user_detail['address'] }}" formControlName="address" id="address" type="text" />
+                    </div>
+
+                    <div class="h5 m-t-40 p-b-20">Edit login details</div>
+
+                    <div class="form-group">
+                        <label for="current_password">Confirm current password *</label>
+                        <input class="form-control" formControlName="current_password" id="current_password" type="password" (blur)="isCurrentPassword($event.target.value)" [class.invalid]="!profileForm.controls.current_password.valid && (profileForm.controls.current_password.dirty)">
+                        <small>* For security reasons, please enter your current password.</small>
+                        <p class="error m-0-auto" *ngIf="!is_current_password">
+                            {{is_current_password_msg}}</p>
+                    </div>
+                    <div class="form-group p-b-25">
+                        <label for="password">Enter new password</label>
+                        <input class="form-control" formControlName="password" id="password" type="password" [class.invalid]="!profileForm.controls.password.valid && (profileForm.controls.password.dirty)" (blur)="isPreviousPassword($event.target.value)">
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.password.hasError('required') && profileForm.controls['password'].touched">
+                            Password field is required.</p>
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.password.hasError('pattern') && profileForm.controls['password'].dirty">
+                            * The new password must be 8 characters long with a combination of upper and lower case letters, numbers AND symbols.</p>
+                        <p class="error m-0-auto" *ngIf="!is_previous_password">
+                            {{is_previous_password_msg}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Re-type new password *</label>
+                        <input class="form-control" formControlName="confirm_password" id="confirm_password" type="password" [class.invalid]="!profileForm.controls.confirm_password.valid && (profileForm.controls.confirm_password.dirty)">
+                        <small>* To change your password, enter the new password again.</small>
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.confirm_password.touched && profileForm.hasError('match_password')">
+                            Password does not match.
+                        </p>
+                        <p class="error m-0-auto" *ngIf="profileForm.controls.confirm_password.hasError('required') && profileForm.controls['confirm_password'].dirty">
+                            Confirm password field is required.</p>
+                    </div>
+                    <div class="d-line">
+                        <button type="submit" class="btn btn-green pull-right btn-250">Update Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

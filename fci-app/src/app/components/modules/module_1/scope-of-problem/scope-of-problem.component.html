@@ -1,0 +1,49 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="primary-body scope-of-problem">
+	<div class="container" [ngSwitch]="scopeId">
+		<div class="row min-h" *ngSwitchCase="'module-1-1'">
+			<div class="scope-head m-b-30">
+				<h1 class="scope-head-h1">Scope of the Problem
+					<p class="module"><a routerLink="/patient/module-1/intro">Module 1</a></p>
+				</h1>
+				<p class="sub-title">San Francisco, California - 2018</p>
+			</div>
+			<div class="scope-content">
+				<div class="col-md-3 col-sm-12 scope-img">
+					<img src="assets/images/module-1/scope.png" width="75%;">
+				</div>
+				<div class="col-md-5 col-sm-12">
+					<div class="scope-circle text-center">
+						<h1 class="percent">14%</h1>
+						<h4>more likely to be diagnosed with cancer than the general population </h4>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<ul class="scope-right-side">
+						<li><img src="assets/images/module-1/scope-1.png">Leading cause of firefighter deaths</li>
+						<li><img src="assets/images/module-1/scope-2.png">Risks may be underestimated due to healthy
+							worker effect</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row min-h" *ngSwitchCase="'module-1-2'">
+			<div class="scope-head m-b-30 pl-15">
+				<h1 class="scope-head-h1">Scope of The Problem
+					<p class="module"><a routerLink="/patient/module-1/intro">Module 1</a></p>
+				</h1>
+				<p class="sub-title">San Francisco, California - 2018</p>
+			</div>
+			<div class="scope-content">
+				<div class="col-md-5 col-sm-12 p-t-20">
+					<p class="font-18 m-b-20">Among the female firefighters <span class="text-bold">(40-50 year-old)</span> in the San Francisco Fire Department, the
+						breast cancer rate was found to be 6 times the national average for that age group.</p>
+				</div>
+				<div class="col-md-offset-1 col-md-6 col-sm-12">
+					<img src="assets/images/module-1/scope-problem.png">
+				</div>
+			</div>
+		</div>
+		<app-previous-next-buttons></app-previous-next-buttons>
+	</div>
+</div>

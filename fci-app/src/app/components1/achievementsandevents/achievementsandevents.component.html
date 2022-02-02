@@ -1,0 +1,67 @@
+<!-- <div class="inner-content p-b-50">
+    <app-inner-page-header page_title="My Achievements & Events"></app-inner-page-header>
+
+    <div class="container">
+        <div class="row m-t-40" *ngIf="armAlloted=='INTERVENTION';else control">
+            <div class="col-md-12">
+                <h6>This page has a list of all your events and achievements during the 8 weeks of the study. There are
+                    3 achievement levels you can receive:</h6>
+                <p class="m-t-20 m-award"><strong> Level 1 (ribbon): Used the site for 30 mins in a week</strong></p>
+                <p class="m-t-20 m-award"><strong> Level 2 (medal): Used the site for 30 mins in a week + completed one
+                        exercise for the week</strong></p>
+                <p class="m-t-20 m-award"><strong> Level 3 (trophy): Used the site for 30 mins in a week + completed at
+                        least two exercises for the week</strong></p>
+            </div>
+        </div>
+
+        <ng-template #control>
+            <div class="row m-t-40">
+                <div class="col-md-12">
+                    <h6>This page has a list of all your events and achievements during the 8 weeks of the study. There
+                        are 3 achievement levels you can receive:</h6>
+                    <p class="m-t-20 m-award"><strong> Level 1 (ribbon): Used the site for 10 mins in a week</strong>
+                    </p>
+                    <p class="m-t-20 m-award"><strong> Level 2 (medal): Used the site for 20 mins in a week</strong></p>
+                    <p class="m-t-20 m-award"><strong> Level 3 (trophy): Used the site for 30 mins in a week</strong>
+                    </p>
+                </div>
+            </div>
+        </ng-template>
+
+        <div class="row m-t-15">
+            <ng-container *ngFor="let week of weekInfo; let i=index">
+                <div class="row week-list"
+                    [ngClass]="(week?.week_number >= i+1 && week?.is_current_week) ? '' : 'disabled'"
+                    *ngIf="(week?.is_study_week == '0' || (week?.is_study_week == '1' && week?.is_current_week))">
+                    <div class="col-xs-12 pl-pr-0">
+                        <div class="week">
+                            <span *ngIf="!week?.is_current_week">Week {{ week?.week_number }}</span>
+                            <span *ngIf="week?.is_current_week"><b>Week {{ week?.week_number }} (current
+                                    week)</b></span>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-5 pl-pr-0">
+                        <p class="list-heading enabled"><strong>My Achievements</strong></p>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-3 icon text-center">
+                                <i class="sm-events  c-d-blue" [ngClass]="showAward(week, 'ribbon', i)"></i>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-3 icon text-center">
+                                <i class="sm-achievements c-secondary" [ngClass]="showAward(week, 'medal', i)"></i>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-3 icon text-center">
+                                <i class="sm-award c-orange" [ngClass]="showAward(week, 'trophy', i)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7 pl-pr-0 enabled">
+                        <p class="list-heading"><strong>My Events</strong></p>
+                        <div class="col-xs-12">
+                            <p [innerHTML]="getWeekEvent(week?.event)"></p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div> -->

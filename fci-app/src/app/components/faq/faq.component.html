@@ -1,0 +1,94 @@
+<div class="inner-content p-b-50">
+    <!-- <app-inner-page-header page_title="FAQ" back_link="/home" back_title="Home"></app-inner-page-header> -->
+    <app-inner-page-header page_title="FAQ"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <accordion class="main-accordion panel-group" [closeOthers]="true">
+                    <accordion-group #res1>
+                        <div accordion-heading class="row clearfix">
+                            <span class="col-xs-10 h6">What is FCI?</span>
+                            <span class="col-xs-2 text-right h6">
+                                <i [ngClass]="res1?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-inner">
+                            <div class="row section">
+                                <div class="col-xs-12">
+                                    <p>The FCI  program is an online tool for helping HIV+ cancer survivors adapt
+                                        to the daily challenges of co-managing these two chronic conditions. In
+                                        particular, we hope that FCI addresses specific needs of gay and
+                                        bisexual men and trans women, which are commonly overlooked in available
+                                        resources for people living with HIV who are also cancer survivors. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group #res2>
+                        <div accordion-heading class="row clearfix">
+                            <span class="col-xs-10 h6">What is the purpose of FCI?</span>
+                            <span class="col-xs-2 text-right h6">
+                                <i [ngClass]="res2?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-inner">
+                            <div class="row section">
+                                <div class="col-xs-12">
+                                    <p>Based on nearly three decades of research, FCI brings together the
+                                        knowledge of experts at Northwestern University and the University of Miami.
+                                        Members of our team have studied a wide range of topics, including the
+                                        psychosocial aspects of disease management, health promotion in the LGBT
+                                        population, and the use of technology to improve health outcomes. We hope that
+                                        sharing our expertise will help you to cope more effectively with cancer and
+                                        HIV. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group #res3>
+                        <div accordion-heading class="row clearfix">
+                            <span class="col-xs-10 h6">How can the FCI study help me?</span>
+                            <span class="col-xs-2 text-right h6">
+                                <i [ngClass]="res3?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-inner">
+                            <div class="row section">
+                                <div class="col-xs-12">
+                                    <p>By participating in this study, you will have access to all of the information
+                                        included in the FCI website. Many of the resources in FCI may be
+                                        relevant to your experience living with both HIV and cancer, as well as daily
+                                        challenges and stressors. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group #res4>
+                        <div accordion-heading class="row clearfix">
+                            <span class="col-xs-10 h6">Who has access to FCI? </span>
+                            <span class="col-xs-2 text-right h6">
+                                <i [ngClass]="res4?.isOpen ? 'sm-minus' : 'sm-plus'" class="more-less"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-inner">
+                            <div class="row section">
+                                <div class="col-xs-12">
+                                    <p>Only enrolled participants and approved study staff have access to the
+                                        FCI website. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+
+                </accordion>
+            </div>
+            <!-- End content-left -->
+        </div>
+    </div>
+</div>

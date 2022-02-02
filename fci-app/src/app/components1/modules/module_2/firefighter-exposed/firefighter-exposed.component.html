@@ -1,0 +1,121 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="primary-body learning-objectives">
+    <div class="container">
+        <div class="row min-h" *ngIf="module=='module-2' && index=='1'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">What Are Firefighters Exposed To?
+                    <p class="module"><a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+                <p class="sub-title">Firefighters are exposed to toxins considered either known carcinogens or probable carcinogens, such as:</p>
+            </div>
+            <div class="learning-objectives-list text-center exposed-bg-list row">
+                <div class="col-md-3">
+                    <div class="bg-list">
+                        <img src="assets/images/module-2/polycyclic.png" alt="Polycyclic">
+                        <h5>Polycyclic aromatic hydrocarbons (PAHs)</h5>
+                        <p class="h8"><span class="bold">Examples:</span> Benzo[a]pyrene, Napthalene, Acenapthylene</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="bg-list">
+                        <img src="assets/images/module-2/organic.png" alt="Organic">
+                        <h5>Volatile Organic Compounds (VOCs)</h5>
+                        <p class="h8"><span class="bold">Examples:</span> Formaldehyde, Benzene</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="bg-list">
+                        <img src="assets/images/module-2/toxic.png" alt="Asbestos">
+                        <h5>Asbestos</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="bg-list">
+                        <img src="assets/images/module-2/diesel.png" alt="Diesel">
+                        <h5>Diesel</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row min-h" *ngIf="module=='module-2' && index=='2'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">Where are Firefighters Exposed?
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content occupational">
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left">
+                        <img src="assets/images/module-2/exposed-1.png" width="100%" alt="On the scene">
+                        <span class="numbers">1</span>
+                        <div class="exposed">
+                            <h6>On the scene</h6>
+                            <p>Exposure to toxins released by fires.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left">
+                        <img src="assets/images/module-2/exposed-2.png" width="100%" alt="At the station">
+                        <span class="numbers">2</span>
+                        <div class="exposed">
+                            <h6>At the station</h6>
+                            <p>Exposure to diesel exhaust and possible cross contamination from fire scene</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left">
+                        <img src="assets/images/module-2/exposed-3.png" width="100%" alt="En route">
+                        <span class="numbers">3</span>
+                        <div class="exposed">
+                            <h6>En route</h6>
+                            <p>Possible cross contamination from fire scene</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row min-h" *ngIf="module=='module-2' && index=='3'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">Where are Firefighters Exposed?
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content occupational mobile-device">
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left h-440">
+                        <img src="assets/images/module-2/inhalation.png" width="100%" alt="Inhalation">
+                        <div class="exposed">
+                            <h6>Inhalation</h6>
+                            <p>Toxins can be inhaled on the scene, at the station, and en route.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left h-440">
+                        <img src="assets/images/module-2/absorption.png" width="100%" alt="Absorption">
+                        <div class="exposed">
+                            <h6>Absorption</h6>
+                            <p>Toxins can be absorbed through the skin. Increases in temperature increases skins ability to absorb. The face, jaw, neck, and throat are more susceptible.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="occupational-left h-440">
+                        <img src="assets/images/module-2/ingestion.png" width="100%" alt="Ingestion">
+                        <div class="exposed">
+                            <h6>Ingestion</h6>
+                            <p>Toxins can be accidentally ingested when drinking or eating without first completing proper decontamination.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <app-previous-next-buttons></app-previous-next-buttons>
+    </div>
+</div>

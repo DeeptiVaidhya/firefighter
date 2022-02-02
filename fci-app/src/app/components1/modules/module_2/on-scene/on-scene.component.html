@@ -1,0 +1,101 @@
+<app-inner-page-header [isHidden]="!0"></app-inner-page-header>
+<div class="primary-body niosh">
+    <div class="container">
+        <div class="row min-h" *ngIf="module=='module-2' && index=='1'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">On the Scene
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content">
+                <div class="col-md-5 col-sm-12 meta-analysis-left">
+                    <p>Even when using PPE as required, firefighters may test “+” for carcinogens in their system.</p>
+                    <p> Agents could be absorbed through skin during fire suppression or inhaled when doffing gear</p>
+                    <p>↑ risks when:</p>
+                    <ul>
+                        <li>PPE and SCBA are ot worn properly or consistently</li>
+                        <li>Completing overhaul without SCBA and/or PPE</li>
+                    </ul>
+                </div>
+                <div class="col-md-offset-1 col-md-6 col-sm-12">
+                    <div class="niosh-right-side">
+                        <img src="assets/images/module-1/left-niosh.png" alt="left-niosh">
+                        <h3 class="text-center pd-22 add-font">99+ % of smoke particles collected during overhaul were less than 1 micron in diameter. Of these 97+ % were too small to be visible by the naked eye suggesting that “clean” air was not really that clean</h3>
+                        <p class="text-center p-t-10 bold-font">Fabian, et al (2010)</p>
+                        <p class="pull-right"><img src="assets/images/module-1/right-niosh.png" alt="right-niosh"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row min-h" *ngIf="module=='module-2' && index=='2'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">In the Vehicle
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content">
+                <div class="col-md-6 col-sm-12 meta-analysis-left">
+                    <p>Transporting contaminated gear in cab or other vehicles:</p>
+                    <ul>
+                        <li>Extends exposure to harmful contaminants via PPE off-gassing</li>
+                        <li>Contaminates the cab or vehicle</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <img src="assets/images/module-2/vehicle.png" alt="vehicle" class="mob-767">
+                </div>
+            </div>
+        </div>
+
+        <div class="row min-h" *ngIf="module=='module-2' && index=='3'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">At the station
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content">
+                <div class="col-md-6 col-sm-12 meta-analysis-left">
+                    <p>Diesel exhaust</p>
+                    <ul>
+                        <li>Classified by multiple organizations as “potential” or “likely” carcinogenic</li>
+                        <li>Classified by International Agency for Research on Cancer as carcinogenic</li>
+                        <li>Exposure occurs when trucks run in closed bays without proper ventilation</li>
+                        <li>Can contaminate gear, ice machines, and other items stored in the bay area</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <img src="assets/images/module-2/station.png" alt="station" class="mob-767">
+                </div>
+            </div>
+        </div>
+
+        <div class="row min-h" *ngIf="module=='module-2' && index=='4'">
+            <div class="scope-head m-b-30">
+                <h1 class="scope-head-h1">PPE Off-gassing
+                    <p class="module">&nbsp;&nbsp;<a routerLink="/patient/module-2/intro">Module 2</a></p>
+                </h1>
+            </div>
+            <div class="scope-content">
+                <div class="col-md-6 col-sm-12 meta-analysis-left p-b-20">
+                    <p class="p-t-20">PPE collects contaminants during fire</p>
+                    <p> Contaminants continue off-gassing from PPE even after a fire, extending inhaled exposure:</p>
+                    <ul>
+                        <li>Doffing of gear</li>
+                        <li>Rehab, if near PPE</li>
+                        <li>Exposure occurs when trucks run in closed bays without proper ventilation</li>
+                        <li>Transporting gear in engine cab</li>
+                    </ul>
+
+                    <p class="font-normal">
+                        Higher temperatures can accelerate off-gassing
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <img src="assets/images/module-2/gassing.png" alt="gassing" class="mob-767">
+                </div>
+            </div>
+        </div>
+        <app-previous-next-buttons></app-previous-next-buttons>
+    </div>
+</div>

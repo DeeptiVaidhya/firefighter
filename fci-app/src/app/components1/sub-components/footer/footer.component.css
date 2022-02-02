@@ -1,0 +1,64 @@
+.module-footer {
+    padding: 16px 0;
+    height: 64px;
+}
+
+.module-footer .footer-logo {
+    width: 114px;
+    position: absolute;
+    left: 16px;
+    z-index: 9;
+}
+
+.module-footer .nav-footer-mod-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.module-footer ul li {
+    display: inline-block;
+    font: Bold 16px/18px Arial;
+    background: #e5e5e5;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    color: #212121;
+    opacity: 0.3;
+    padding-top: 8px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.module-footer ul li.tab-active {
+    background: #f47525;
+    opacity: 1;
+    color: #fff;
+}
+
+/*audio player*/
+vg-player {
+    position: inherit;
+}
+
+vg-time-display {
+    font-size: 12px;
+    pointer-events: none;
+    color: #444e55 !important;
+}
+
+vg-play-pause {
+    justify-content: center;
+    width: 15px;
+    cursor: pointer;
+    color: #00502f;
+    line-height: 50px;
+}
+
+[class^="vg-icon-"],
+[class*=" vg-icon-"] {
+    font-family: "videogular" !important;
+    width: 50px;
+    font-size: 20px;
+}

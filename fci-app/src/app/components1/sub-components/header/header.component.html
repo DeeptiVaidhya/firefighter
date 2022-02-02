@@ -1,0 +1,169 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top header-main {{!!isModulePage?'module-header':''}}" *ngIf="!!isHeaderHidden">
+    <div class="container" *ngIf="!!!isModulePage">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" (click)="isCollapsed = !isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo-img" routerLink="{{ isLoggedIn ? link?.dashboard : 'home' }}">
+                <img class="logo" src="assets/images/logo.jpg" alt="FCI" width="120" />
+            </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse" [class.in]="!isCollapsed">
+            <ul class="h9 nav navbar-nav navbar-right header">
+                <li (click)="isCollapsed = !isCollapsed" *ngIf="isLoggedIn" routerLinkActive="tab-active">
+                    <a routerLink="/patient/dashboard">Dashboard</a>
+                </li>
+                <li (click)="isCollapsed = !isCollapsed" *ngIf="isLoggedIn" routerLinkActive="tab-active">
+                    <a routerLink="/resources">Resources</a>
+                </li>
+                <li class="dropdown-li" dropdown container="body" *ngIf="isLoggedIn" [class.tab-active]="(this.maIsOpen || this.maClicked)" (isOpenChange)="toggleDropdown()">
+                    <a dropdownToggle class="dropdownToggle" href="javascript:void(0)">My account</a>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li [routerLinkActive]="['active']" role="menuitem" (click)="isCollapsed = !isCollapsed">
+                            <a class="dropdown-item" routerLink="/patient/profile">My Account Details</a>
+                        </li>
+                        <li [routerLinkActive]="['active']" role="menuitem" (click)="isCollapsed = !isCollapsed">
+                            <a class="dropdown-item"routerLink="/patient/demographic" >Demographic</a>
+                        </li> 
+
+                        <li [routerLinkActive]="['active']" role="menuitem" (click)="isCollapsed = !isCollapsed">
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Signout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li routerLink="/home" (click)="isCollapsed = !isCollapsed" *ngIf="!isLoggedIn" routerLinkActive="tab-active">
+                    <!-- <a href="javascript:void(0)" (click)="scroll('sign_in')">Sign up</a> -->
+                    <button type="submit" class="sign-up" (click)="openModal(template)">Sign up</button> 
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <div class="container-fluid " *ngIf="!!isModulePage && !!isLoggedIn">
+        <div class="navbar-header col-xs-12">
+            <a class="logo-img pull-left" routerLink="{{ isLoggedIn ? 'patient/landing' : 'home' }}">
+                <img class="logo-img" src="assets/images/logo.jpg" alt="FCI" width="100%" />
+            </a>
+            <button type="button" class="navbar-toggle nav-toggle-module pull-right" (click)="toggleModuleMenu()">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar_module" class="sidenav-module {{!isCollapsedModule?'w-290px':''}}" [class.in]="!isCollapsedModule">
+            <div class="nav-module-header">
+                <a class="logo-img pull-left" routerLink="{{ isLoggedIn ? 'patient/landing' : 'home' }}">
+                    <img class="logo-img" src="assets/images/logo.jpg" alt="FCI" width="100%" />
+                </a>
+                <a href="javascript:void(0)" class="closebtn pull-right" (click)="isCollapsedModule = !isCollapsedModule">&times;</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/landing">Introduction</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/module-1/intro">Cancer in the Fire Service</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/module-2/intro">Occupational Cancer Risk</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/module-3/intro">Reducing Cancer Risk</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/module-4/intro">Organizational Leverage Change</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/module-5/intro">Ongoing Learning Resources</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/modules/references">References</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/patient/modules/acknowledgements">Acknowledgements</a>
+                </li>
+                <li (click)="isCollapsedModule = !isCollapsedModule" routerLinkActive="tab-active">
+                    <a routerLink="/contact-us">Contact FCI</a>
+                </li>
+                <li  routerLinkActive="tab-active" (click)="isCollapsedModule = !isCollapsedModule">
+                    <a href="javascript:void(0)" (click)="logout()">Signout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+ <!-- <a class="hidden" href="javascript:void(0)" (click)="openModal(dModal)">Demographic</a> -->
+
+<ng-template #template>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-header sign-up-model">
+        <div class="text-center sign-up-head">
+            <h6 class="modal-title m-b-10">Sign up to</h6>
+            <img src="assets/images/logo.jpg">
+            <p class="m-t-20">Already have an account? <a href="javascript:void(0)" (click)="modalRef.hide()" class="link-green">Sign in</a></p>
+            
+        </div>
+    </div>
+    <div class="modal-body sign-up-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="sign-up-form" [formGroup]="registrationForm" (ngSubmit)="submit()">
+                    <div class="m-b-20">
+                        <input type="text" class="form-control" placeholder="Name" formControlName="first_name">
+                        <p class="error" *ngIf="registrationForm.controls['first_name'].hasError('required') && registrationForm.controls['first_name'].touched">
+                            Name field is required.</p>
+                        <p class="error" *ngIf="registrationForm.controls['first_name'].hasError('pattern') && registrationForm.controls['first_name'].touched">Please enter a valid Name.</p>
+                    </div>
+
+                    <div class="m-b-20">
+                        <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                        <p class="error" *ngIf="registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched">
+                            Email is required.</p>
+                        <p class="error" *ngIf="registrationForm.controls['email'].hasError('pattern') && registrationForm.controls['email'].touched">
+                            Please enter a valid email.</p>
+                    </div>
+
+                    <div class="m-b-20">
+                        <select formControlName="country">
+                            <option value="">Select Country</option>
+                            <option *ngFor="let cName of countryName" value="{{cName.id}}">{{cName.country}}</option>
+                        </select>
+                        <p class="error" *ngIf="registrationForm.controls['country'].hasError('required') && registrationForm.controls['country'].touched">
+                            Please Select Country</p>
+                    </div>
+                    <div class="m-b-20">
+                        <input type="text" class="form-control" placeholder="Street Address (if US)" formControlName="address">
+                        <!-- <p class="error" *ngIf="registrationForm.controls['address'].hasError('required') && registrationForm.controls['address'].touched">Address is required.</p> -->
+                    </div>
+
+                    <div class="m-b-20">
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                        <p class="error" *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched">
+                            Password is required.</p>
+                        <p class="error" *ngIf="registrationForm.controls['password'].hasError('pattern') && registrationForm.controls['password'].touched">
+                            The password must be alphanumeric, 1 uppercase letter and 1 special character.</p>
+                    </div>
+                    <div class="m-b-20">
+                        <input class="form-control" placeholder="Confirm Password" formControlName="confirm_password" id="confirm_password" type="password" [class.invalid]="!registrationForm.controls.confirm_password.valid && (registrationForm.controls.confirm_password.dirty)">
+                        <p class="error m-0-auto" *ngIf="registrationForm.hasError('match_password')">
+                            Password does not match.
+                        </p>
+                        <p class="error m-0-auto" *ngIf="registrationForm.controls.confirm_password.hasError('required') && registrationForm.controls['confirm_password'].dirty">
+                            Confirm password field is required.</p>
+                    </div>
+                    <!-- <p class="forget-pass">Forgot your password?</p> -->
+
+                    <button type="submit" class="btn btn-green f-20 m-b-20">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template> 

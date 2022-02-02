@@ -1,0 +1,85 @@
+<div class="inner-content p-b-50">
+    <!-- <app-inner-page-header page_title="Contact Us" back_link="/home" back_title="Home"></app-inner-page-header> -->
+
+    <app-inner-page-header page_title="Contact Us"></app-inner-page-header>
+    <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12 contact-left">
+                <p class="content-text">Our team is available to answer questions on weekdays between the hours of 9am
+                    and 5pm. We can be reached by phone or email. Please allow 24 hours for us to respond to any
+                    inquiries. </p>
+                <form [formGroup]="form" (ngSubmit)="send()" autocomplete="off" class="ot-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name"
+                            [class.invalid]="!form.controls.name.valid && (form.controls.name.dirty)" type="text"
+                            class="form-control" id="name" name="name">
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched">Name
+                            field is required.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input class="form-control" formControlName="email" id="email" type="text"
+                            [class.invalid]="!form.controls.email.valid && (form.controls.email.dirty)">
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched">Email
+                            field is required.</p>
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['email'].hasError('pattern') && form.controls['email'].touched">Please
+                            enter a valid email.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Telephone number</label>
+                        <input class="form-control" formControlName="telephone" id="telephone" type="text"
+                            [class.invalid]="!form.controls.telephone.valid && (form.controls.telephone.dirty)">
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['telephone'].hasError('required') && form.controls['telephone'].touched">
+                            Telephone field is required.</p>
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['telephone'].hasError('pattern') && form.controls['telephone'].touched">
+                            Please enter a valid number.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" rows="7" formControlName="message" id="message" type="text"
+                            [class.invalid]="!form.controls.message.valid && (form.controls.message.dirty)"></textarea>
+                        <p class="error m-0-auto" col-12 ion-text color="danger"
+                            *ngIf="form.controls['message'].hasError('required') && form.controls['message'].touched">
+                            Message field is required.</p>
+                    </div>
+                    <div class="d-line">
+                        <button class="btn btn-green pull-right btn-250">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="content-right-bg">
+                    <div class="col-xs-12">
+                        <div class="h6">Contact Information</div>
+                    </div>
+                    <div class="content-right-inner">
+                        <div class="col-xs-12 p-b-20 p-t-20">
+                            <p class="content-p p-b-20"><strong>Address:</strong><br>1120 NW 14th Street<br />Miami, FL
+                                33136</p>
+                            <p><strong>Telephone:</strong><br> 305-243-9538</p>
+                            <p><br> <strong>Email:</strong><br><a class="word-break"
+                                    href="mailto:firefighterstudy@miami.edu">firefighterstudy@miami.edu</a>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 contact-right">
+                            <p class="f-regular">People Involved in the project:</p>
+                            <span>Natasha Schaefer Solle, PhD, RN</span>
+                            <span>Frank Penedo, PhD</span>
+                            <span>Cynthia Beaver, MPH</span>
+                            <span>Vandana D. Sookdeo, MD</span>
+                            <span>Erin Kobetz, PhD, MPH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

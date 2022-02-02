@@ -1,0 +1,38 @@
+
+.emoji-select {
+    border: solid 2px #d4dddc;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.p-100 {
+    padding: 100px;
+}
+
+.modal-header .close {
+    margin-top: -10px;
+    font-size: 40px;
+}
+.modal-header {
+    border-bottom: 0 none;
+}
+.audio-bg{
+	height: 490px;
+}
+
+@media (max-width: 991px){
+	.audio-bg{
+		height: 356px;
+	}
+}
+@media (max-width: 767px){
+	.audio-bg{
+		height: 420px;
+	}
+}
+@media (max-width: 575px){
+	vg-time-display, vg-time-display, vg-volume{
+		display: none;
+	}
+}
+
